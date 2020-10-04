@@ -13,16 +13,16 @@ Sub StockFunction()
         Dim printCount As Integer
         Dim count As Integer
         
-        
         LastRow = ws.Cells(Rows.count, 1).End(xlUp).Row
     
-        'For loop to go through all the sheets ***
+        'labels
         ws.Cells(1, 9).Value = "Ticker"
         ws.Cells(1, 10).Value = "Yearly Change"
         ws.Cells(1, 11).Value = "Percent Change"
         ws.Cells(1, 12).Value = "Total Stock Volume"
-        
         WorksheetName = ws.Name
+        
+        'counters
         printCounter = 2
         totalStockVol = 0
     
@@ -30,17 +30,17 @@ Sub StockFunction()
             
             totalStockVol = totalStockVol + Cells(i, 7).Value
                
+            'grabbing open value for each tickers first value
             If (ws.Cells(i - 1, 1).Value <> ws.Cells(i, 1).Value) Then
                 
                 yearStart = ws.Cells(i, 3).Value
             
             End If
-                    
+                            
             If (ws.Cells(i + 1, 1).Value <> ws.Cells(i, 1).Value) Then
                                                                                                                                                                                                                             
-                'MsgBox (totalStockVol)
-                'yearStart
-                'MsgBox (yearStart)
+                'MsgBox (totalStockVol) debugging
+                'MsgBox (yearStart) debugging
     
                 'endYear
                 yearEnd = ws.Cells(i, 6).Value
@@ -69,7 +69,9 @@ Sub StockFunction()
                 
                 End If
                 
+                'formatting
                 ws.Columns("K").NumberFormat = "##,##0.00%"
+                
                 'print percentChange
                 If (yearStart > 0) Then
                     
@@ -89,8 +91,8 @@ Sub StockFunction()
         'challenges
         
         LastRow2 = ws.Cells(Rows.count, 11).End(xlUp).Row
-        
-        
+               
+        'variables
         Dim posCurrentVal As Double
         Dim posCurrentTickVal As String
         Dim negCurrentVal As Double
@@ -132,6 +134,7 @@ Sub StockFunction()
             
         Next i
             
+        'labels
         ws.Cells(1, 16).Value = “Ticker”
         ws.Cells(1, 17).Value = “Value”
         
